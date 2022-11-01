@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PresensiController;
+
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Agenda
     Route::apiResource('agendas', 'AgendaApiController');
@@ -14,3 +17,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Presensi
     Route::apiResource('presensis', 'PresensiApiController', ['except' => ['store', 'update']]);
 });
+
+
+Route::get('/userdata/{uuid}', [HomeController::class, 'userData'])->name('userData');
+Route::post('/presensi', [PresensiController::class, 'store'])->name('storePresensi');
+Route::get('/presensi', [PresensiController::class, 'getPresensi'])->name('getPresensi');
+Route::get('/session', [PresensiController::class, 'getCurrentSession'])->name('getCurrentSession');

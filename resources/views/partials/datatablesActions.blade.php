@@ -1,3 +1,8 @@
+@if($crudRoutePart == 'peserta')
+    <a class="btn btn-xs btn-primary" href="{{ route('admin.' . $crudRoutePart . '.generate', ['id' => $row->id, 'pesertum' => $row->id]) }}">
+        Generate ID
+    </a>
+@endif
 @can($viewGate)
     <a class="btn btn-xs btn-primary" href="{{ route('admin.' . $crudRoutePart . '.show', $row->id) }}">
         {{ trans('global.view') }}

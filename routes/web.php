@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PesertaController;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -43,6 +45,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('peserta/ckmedia', 'PesertaController@storeCKEditorImages')->name('peserta.storeCKEditorImages');
     Route::post('peserta/parse-csv-import', 'PesertaController@parseCsvImport')->name('peserta.parseCsvImport');
     Route::post('peserta/process-csv-import', 'PesertaController@processCsvImport')->name('peserta.processCsvImport');
+    Route::get('peserta/{pesertum}/generate/{id}', [PesertaController::class, 'generate'])->name('peserta.generate');
     Route::resource('peserta', 'PesertaController');
 
     // Presensi

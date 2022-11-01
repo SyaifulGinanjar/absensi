@@ -15,6 +15,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use URL;
+use Uuid;
+
 class PesertaController extends Controller
 {
     use MediaUploadingTrait;
@@ -161,5 +165,25 @@ class PesertaController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function generate(Pesertum $pesertum, $id){
+        $data = Pesertum::where('id', $id)->first();
+        if($data){
+            $uuid = $data->uuid;
+
+            if($uuid == NULL){
+                $uuid = Uuid::generate();
+                QrCode::size(1020)->generate($uuid, '../public/qrcodes/'.$uuid.'.svg');
+                $value['uuid'] = $uuid;
+                Pesertum::where('id', $id)->update($value);
+                $data->uuid = $uuid;
+            }
+
+            return view('idcard', compact('pesertum'));
+
+        }else{
+            echo 'ID Peserta tidak Valid';
+        }
     }
 }

@@ -62,4 +62,9 @@ class Session extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+    
+    public function scopeWhereDateBetween($query,$fieldName,$fromDate,$fieldName2,$todate)
+    {
+        return $query->where($fieldName,'<=',$fromDate)->where($fieldName2,'>=',$todate);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pesertum;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth');
         return view('home');
     }
+
+    public function userData(Pesertum $p, $uuid)
+    {
+        $p = Pesertum::where('uuid', $uuid)->first();
+        return response()->json(['type' => 'success', 'status' => 200, 'data' => $p]);
+    }
+    
 }
