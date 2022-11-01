@@ -25,13 +25,11 @@ class StorePesertumRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'jenis_kelamin' => [
-                'string',
+            'angkatan' => [
                 'nullable',
-            ],
-            'nomor_ponsel' => [
-                'string',
-                'nullable',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
             ],
         ];
     }

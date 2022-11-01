@@ -148,6 +148,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 35,
+                'title' => 'presensi_makan_create',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'presensi_makan_edit',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'presensi_makan_show',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'presensi_makan_delete',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'presensi_makan_access',
+            ],
+            [
+                'id'    => 40,
                 'title' => 'profile_password_edit',
             ],
         ];

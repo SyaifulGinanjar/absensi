@@ -1,26 +1,31 @@
 @extends('layouts.admin')
 @section('content')
-
+@can('presensi_makan_create')
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route('admin.presensi-makans.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.presensiMakan.title_singular') }}
+            </a>
+        </div>
+    </div>
+@endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.presensi.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.presensiMakan.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Presensi">
+        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-PresensiMakan">
             <thead>
                 <tr>
                     <th width="10">
 
                     </th>
                     <th>
-                        {{ trans('cruds.presensi.fields.id') }}
+                        {{ trans('cruds.presensiMakan.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.presensi.fields.nama_sesi') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.presensi.fields.nama_peserta') }}
+                        {{ trans('cruds.presensiMakan.fields.peserta') }}
                     </th>
                     <th>
                         {{ trans('cruds.pesertum.fields.asal_dprd') }}
@@ -29,13 +34,7 @@
                         {{ trans('cruds.pesertum.fields.angkatan') }}
                     </th>
                     <th>
-                        {{ trans('cruds.presensi.fields.type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.presensi.fields.status') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.presensi.fields.waktu') }}
+                        {{ trans('cruds.presensiMakan.fields.waktu') }}
                     </th>
                     <th>
                         &nbsp;
@@ -50,14 +49,6 @@
                     <td>
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
-                            @foreach($sessions as $key => $item)
-                                <option value="{{ $item->nama_sesi }}">{{ $item->nama_sesi }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
                             @foreach($peserta as $key => $item)
                                 <option value="{{ $item->nama }}">{{ $item->nama }}</option>
                             @endforeach
@@ -66,12 +57,6 @@
                     <td>
                     </td>
                     <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -92,11 +77,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('presensi_delete')
+@can('presensi_makan_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.presensis.massDestroy') }}",
+    url: "{{ route('admin.presensi-makans.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
@@ -128,16 +113,13 @@
     serverSide: true,
     retrieve: true,
     aaSorting: [],
-    ajax: "{{ route('admin.presensis.index') }}",
+    ajax: "{{ route('admin.presensi-makans.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'nama_sesi_nama_sesi', name: 'nama_sesi.nama_sesi' },
-{ data: 'nama_peserta_nama', name: 'nama_peserta.nama' },
-{ data: 'nama_peserta.asal_dprd', name: 'nama_peserta.asal_dprd' },
-{ data: 'nama_peserta.angkatan', name: 'nama_peserta.angkatan' },
-{ data: 'type', name: 'type' },
-{ data: 'status', name: 'status' },
+{ data: 'peserta_nama', name: 'peserta.nama' },
+{ data: 'peserta.asal_dprd', name: 'peserta.asal_dprd' },
+{ data: 'peserta.angkatan', name: 'peserta.angkatan' },
 { data: 'waktu', name: 'waktu' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
@@ -145,7 +127,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   };
-  let table = $('.datatable-Presensi').DataTable(dtOverrideGlobals);
+  let table = $('.datatable-PresensiMakan').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

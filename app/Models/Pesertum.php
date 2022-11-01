@@ -31,8 +31,7 @@ class Pesertum extends Model implements HasMedia
     protected $fillable = [
         'nama',
         'asal_dprd',
-        'jenis_kelamin',
-        'nomor_ponsel',
+        'angkatan',
         'uuid',
         'created_at',
         'updated_at',

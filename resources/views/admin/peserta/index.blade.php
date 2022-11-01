@@ -35,10 +35,7 @@
                         {{ trans('cruds.pesertum.fields.asal_dprd') }}
                     </th>
                     <th>
-                        {{ trans('cruds.pesertum.fields.jenis_kelamin') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.pesertum.fields.nomor_ponsel') }}
+                        {{ trans('cruds.pesertum.fields.angkatan') }}
                     </th>
                     <th>
                         {{ trans('cruds.pesertum.fields.foto') }}
@@ -49,9 +46,6 @@
                 </tr>
                 <tr>
                     <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -122,17 +116,16 @@
     ajax: "{{ route('admin.peserta.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
-    { data: 'id', name: 'id' },
-    { data: 'nama', name: 'nama' },
-    { data: 'asal_dprd', name: 'asal_dprd' },
-    { data: 'jenis_kelamin', name: 'jenis_kelamin' },
-    { data: 'nomor_ponsel', name: 'nomor_ponsel' },
-    { data: 'foto', name: 'foto', sortable: false, searchable: false },
-    { data: 'actions', name: '{{ trans('global.actions') }}' }
+{ data: 'id', name: 'id' },
+{ data: 'nama', name: 'nama' },
+{ data: 'asal_dprd', name: 'asal_dprd' },
+{ data: 'angkatan', name: 'angkatan' },
+{ data: 'foto', name: 'foto', sortable: false, searchable: false },
+{ data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 50,
   };
   let table = $('.datatable-Pesertum').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

@@ -59,11 +59,8 @@ class PesertaController extends Controller
             $table->editColumn('asal_dprd', function ($row) {
                 return $row->asal_dprd ? $row->asal_dprd : '';
             });
-            $table->editColumn('jenis_kelamin', function ($row) {
-                return $row->jenis_kelamin ? $row->jenis_kelamin : '';
-            });
-            $table->editColumn('nomor_ponsel', function ($row) {
-                return $row->nomor_ponsel ? $row->nomor_ponsel : '';
+            $table->editColumn('angkatan', function ($row) {
+                return $row->angkatan ? $row->angkatan : '';
             });
             $table->editColumn('foto', function ($row) {
                 if ($photo = $row->foto) {
@@ -168,16 +165,16 @@ class PesertaController extends Controller
     }
 
     public function generate(Pesertum $pesertum, $id){
-        $data = Pesertum::where('id', $id)->first();
-        if($data){
-            $uuid = $data->uuid;
+        $pesertum = Pesertum::where('id', $id)->first();
+        if($pesertum){
+            $uuid = $pesertum->uuid;
 
             if($uuid == NULL){
                 $uuid = Uuid::generate();
                 QrCode::size(1020)->generate($uuid, '../public/qrcodes/'.$uuid.'.svg');
                 $value['uuid'] = $uuid;
                 Pesertum::where('id', $id)->update($value);
-                $data->uuid = $uuid;
+                $pesertum->uuid = $uuid;
             }
 
             return view('idcard', compact('pesertum'));

@@ -30,24 +30,14 @@
                 <span class="help-block">{{ trans('cruds.pesertum.fields.asal_dprd_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="jenis_kelamin">{{ trans('cruds.pesertum.fields.jenis_kelamin') }}</label>
-                <input class="form-control {{ $errors->has('jenis_kelamin') ? 'is-invalid' : '' }}" type="text" name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin', '') }}">
-                @if($errors->has('jenis_kelamin'))
+                <label for="angkatan">{{ trans('cruds.pesertum.fields.angkatan') }}</label>
+                <input class="form-control {{ $errors->has('angkatan') ? 'is-invalid' : '' }}" type="number" name="angkatan" id="angkatan" value="{{ old('angkatan', '') }}" step="1">
+                @if($errors->has('angkatan'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('jenis_kelamin') }}
+                        {{ $errors->first('angkatan') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.pesertum.fields.jenis_kelamin_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="nomor_ponsel">{{ trans('cruds.pesertum.fields.nomor_ponsel') }}</label>
-                <input class="form-control {{ $errors->has('nomor_ponsel') ? 'is-invalid' : '' }}" type="text" name="nomor_ponsel" id="nomor_ponsel" value="{{ old('nomor_ponsel', '') }}">
-                @if($errors->has('nomor_ponsel'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('nomor_ponsel') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.pesertum.fields.nomor_ponsel_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.pesertum.fields.angkatan_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="foto">{{ trans('cruds.pesertum.fields.foto') }}</label>

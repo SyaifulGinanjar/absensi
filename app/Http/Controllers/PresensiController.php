@@ -7,6 +7,7 @@ use App\Models\Presensi;
 use App\Models\Session;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\PresensiMakan;
 
 class PresensiController extends Controller
 {
@@ -49,6 +50,31 @@ class PresensiController extends Controller
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json(['type' => 'error', 'status' => 500, 'message' => $th->getMessage()], 500);
+        }
+    }
+    public function storeMakan(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $mytime = Carbon::now()->toDateTimeString();
+        $input = $request->all();
+        $peserta_id = $input['peserta_id'];
+
+        $data = PresensiMakan::where('peserta_id', $peserta_id)->first();
+
+        if($data){
+            return response()->json(['type' => 'error', 'status' => 500, 'message' => "Anda Sudah Makan"], 500);
+        }else{
+
+            DB::beginTransaction();
+            try {
+                $input['waktu'] = $mytime;
+                $presensiMakan = PresensiMakan::create($input);
+                DB::commit();
+                return response()->json(['type' => 'success', 'status' => 200, 'message' =>  'Berhasil melakukan presensi makan']);
+            } catch (\Throwable $th) {
+                DB::rollback();
+                return response()->json(['type' => 'error', 'status' => 500, 'message' => $th->getMessage()], 500);
+            }
         }
     }
     public function getPresensi(Request $request){

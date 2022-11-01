@@ -53,6 +53,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('presensis/parse-csv-import', 'PresensiController@parseCsvImport')->name('presensis.parseCsvImport');
     Route::post('presensis/process-csv-import', 'PresensiController@processCsvImport')->name('presensis.processCsvImport');
     Route::resource('presensis', 'PresensiController', ['except' => ['create', 'store', 'edit', 'update']]);
+
+    // Presensi Makan
+    Route::delete('presensi-makans/destroy', 'PresensiMakanController@massDestroy')->name('presensi-makans.massDestroy');
+    Route::resource('presensi-makans', 'PresensiMakanController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

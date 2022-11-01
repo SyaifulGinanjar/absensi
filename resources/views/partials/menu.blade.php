@@ -35,6 +35,16 @@
                 </a>
             </li>
         @endcan
+        @can('presensi_makan_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.presensi-makans.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/presensi-makans") || request()->is("admin/presensi-makans/*") ? "c-active" : "" }}">
+                    <i class="fa-fw far fa-check-circle c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.presensiMakan.title') }}
+                </a>
+            </li>
+        @endcan
         @can('agenda_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.agendas.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/agendas") || request()->is("admin/agendas/*") ? "c-active" : "" }}">

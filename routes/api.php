@@ -16,6 +16,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Presensi
     Route::apiResource('presensis', 'PresensiApiController', ['except' => ['store', 'update']]);
+
+    // Presensi Makan
+    Route::apiResource('presensi-makans', 'PresensiMakanApiController');
 });
 
 
@@ -23,3 +26,4 @@ Route::get('/userdata/{uuid}', [HomeController::class, 'userData'])->name('userD
 Route::post('/presensi', [PresensiController::class, 'store'])->name('storePresensi');
 Route::get('/presensi', [PresensiController::class, 'getPresensi'])->name('getPresensi');
 Route::get('/session', [PresensiController::class, 'getCurrentSession'])->name('getCurrentSession');
+Route::post('/presensi-makan', [PresensiController::class, 'storeMakan'])->name('storeMakanPresensi');

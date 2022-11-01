@@ -41,18 +41,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.pesertum.fields.jenis_kelamin') }}
+                            {{ trans('cruds.pesertum.fields.angkatan') }}
                         </th>
                         <td>
-                            {{ $pesertum->jenis_kelamin }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.pesertum.fields.nomor_ponsel') }}
-                        </th>
-                        <td>
-                            {{ $pesertum->nomor_ponsel }}
+                            {{ $pesertum->angkatan }}
                         </td>
                     </tr>
                     <tr>
