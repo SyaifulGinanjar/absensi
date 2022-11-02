@@ -69,7 +69,7 @@ class PresensiController extends Controller
         $data = PresensiMakan::where('peserta_id', $peserta_id)->first();
 
         if($data){
-            return response()->json(['type' => 'error', 'status' => 500, 'message' => "Akses tidak dapat digunakan di restoran ini"], 500);
+            return response()->json(['type' => 'error', 'status' => 500, 'message' => "Akses sudah digunakan"], 500);
         }else{
 
             DB::beginTransaction();
