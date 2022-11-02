@@ -38,6 +38,13 @@ class PresensiController extends Controller
 
         if($data){
             $session_id = $data->id;
+
+            if($input['type'] == 'mobile'){
+                $data = Presensi::where('type', 'mobile')->where('nama_peserta_id', $input['nama_peserta_id'])->where('nama_sesi_id', $session_id)->orderBy('id', 'desc')->first();
+                if($data){
+                    return response()->json(['type' => 'error', 'status' => 500, 'message' => "Anda sudah melakukan presensi"], 500);
+                }
+            }
         }
 
         DB::beginTransaction();
@@ -62,7 +69,7 @@ class PresensiController extends Controller
         $data = PresensiMakan::where('peserta_id', $peserta_id)->first();
 
         if($data){
-            return response()->json(['type' => 'error', 'status' => 500, 'message' => "Anda Sudah Makan"], 500);
+            return response()->json(['type' => 'error', 'status' => 500, 'message' => "Akses tidak dapat digunakan di restoran ini"], 500);
         }else{
 
             DB::beginTransaction();
@@ -70,7 +77,7 @@ class PresensiController extends Controller
                 $input['waktu'] = $mytime;
                 $presensiMakan = PresensiMakan::create($input);
                 DB::commit();
-                return response()->json(['type' => 'success', 'status' => 200, 'message' =>  'Berhasil melakukan presensi makan']);
+                return response()->json(['type' => 'success', 'status' => 200, 'message' =>  'Berhasil menggunakan akses']);
             } catch (\Throwable $th) {
                 DB::rollback();
                 return response()->json(['type' => 'error', 'status' => 500, 'message' => $th->getMessage()], 500);
