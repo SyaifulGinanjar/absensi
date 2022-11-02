@@ -25,6 +25,7 @@ class Presensi extends Model
     protected $fillable = [
         'nama_sesi_id',
         'nama_peserta_id',
+        'user_id',
         'type',
         'status',
         'refer_to',
@@ -42,6 +43,11 @@ class Presensi extends Model
     public function nama_peserta()
     {
         return $this->belongsTo(Pesertum::class, 'nama_peserta_id');
+    }
+
+    public function nama_panitia()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getWaktuAttribute($value)
