@@ -78,7 +78,7 @@ class PresensiController extends Controller
         }
     }
     public function getPresensi(Request $request){
-        return Presensi::where('nama_sesi_id', $request->session_id)->orderBy('id', 'desc')->paginate(30);
+        return Presensi::with(['nama_peserta'])->where('nama_sesi_id', $request->session_id)->orderBy('id', 'desc')->paginate(30);
     }
     public function getCurrentSession(){
         date_default_timezone_set('Asia/Jakarta');
