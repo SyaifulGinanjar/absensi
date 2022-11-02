@@ -27,3 +27,4 @@ Route::post('/presensi', [PresensiController::class, 'store'])->name('storePrese
 Route::get('/presensi', [PresensiController::class, 'getPresensi'])->name('getPresensi');
 Route::get('/session', [PresensiController::class, 'getCurrentSession'])->name('getCurrentSession');
 Route::post('/presensi-makan', [PresensiController::class, 'storeMakan'])->name('storeMakanPresensi');
+Route::post('/auth/login', 'HomeController@login')->name('auth.login');

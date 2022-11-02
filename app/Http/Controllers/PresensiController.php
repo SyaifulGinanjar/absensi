@@ -83,7 +83,7 @@ class PresensiController extends Controller
     public function getCurrentSession(){
         date_default_timezone_set('Asia/Jakarta');
         $mytime = Carbon::now();
-        $data = Sessions::whereDateBetween('start_time', $mytime, 'end_time', $mytime )->first();
+        $data = Session::whereDateBetween('start_time', $mytime, 'end_time', $mytime )->first();
         return $data;
     }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pesertum;
+use App\Models\User;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use URL;
 use Uuid;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -38,7 +40,7 @@ class HomeController extends Controller
 
     public function bulkPdf(Request $request)
     {
-        $peserta = Pesertum::orderBy('id', 'desc')->paginate(100);
+        $peserta = Pesertum::orderBy('id', 'asc')->paginate(100);
         $html = '';
         foreach($peserta as $pesertum)
         {
@@ -58,4 +60,14 @@ class HomeController extends Controller
         return $html; 
     }
     
+    public function login(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // The user is active, not suspended, and exists.
+            $user = User::where('email', $request->email)->first();
+            return response()->json(['type' => 'success', 'status' => 200, 'data' => $user ]);
+        }else{
+            return response()->json(['type' => 'error', 'status' => 401, 'data' => null ]);
+        }
+    }
 }
