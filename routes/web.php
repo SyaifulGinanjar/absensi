@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\PesertaController;
 
 Route::redirect('/', '/login');
+Route::get('/bulk', 'HomeController@bulkPdf')->name('bulkPdf');
+    
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
