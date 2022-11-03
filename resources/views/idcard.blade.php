@@ -23,8 +23,8 @@
             font-family: 'Montserrat' !important;
         }
         #id-card{
-            width: 791px;
-            height: 1106px;
+            width: 447px;
+            height: 625px;
             background-color: blue;
             background-image: url('/imgs/id-card.png');
             background-size: cover;
@@ -32,8 +32,8 @@
             position: relative;
         }
         #id-card #photo{
-            width: 308px;
-            height: 308px;
+            width: 180px;
+            height: 180px;
             background-color: #ddd;
             position: absolute;
             top: 50%;
@@ -41,7 +41,7 @@
             transform: translate(-50%, -50%);
             background-size: cover;
             background-position: top;
-            margin-top: -23px;
+            margin-top: -15px;
         }
         #id-card #name{
             width: 80%;
@@ -49,7 +49,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            margin-top: 215px;
+            margin-top: 130px;
             text-align: center;
             color: #fff;
             text-transform: uppercase;
@@ -57,21 +57,21 @@
         #id-card h1{
             margin-top: 0;
             margin-bottom: 12px;
-            font-size: 26px;
+            font-size: 18px;
         }
         #id-card p{
             margin-top: 0;
             margin-bottom: 0;
-            font-size: 22px;
+            font-size: 16px;
         }
         #id-card #qr{
-            width: 200px;
-            height: 200px;
+            width: 114px;
+            height: 114px;
             background-color: #fff;
             position: absolute;
-            bottom: 16px;
-            right: 16px;
-            padding: 12px;
+            bottom: 8px;
+            right: 8px;
+            padding: 8px;
         }
         @media print {
             .pagebreak { page-break-before: always; } /* page-break-after works, as well */
