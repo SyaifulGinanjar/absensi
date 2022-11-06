@@ -23,8 +23,8 @@
             font-family: 'Montserrat' !important;
         }
         #id-card{
-            width: 447px;
-            height: 625px;
+            width: 791px;
+            height: 1106px;
             background-color: blue;
             background-image: url('/imgs/id-card.png');
             background-size: cover;
@@ -32,8 +32,8 @@
             position: relative;
         }
         #id-card #photo{
-            width: 180px;
-            height: 180px;
+            width: 308px;
+            height: 308px;
             background-color: #ddd;
             position: absolute;
             top: 50%;
@@ -41,7 +41,10 @@
             transform: translate(-50%, -50%);
             background-size: cover;
             background-position: top;
-            margin-top: -15px;
+            margin-top: -23px;
+        }
+        #id-card #photo.angkatan-3{
+            margin-top: -25px;
         }
         #id-card #name{
             width: 80%;
@@ -49,7 +52,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            margin-top: 130px;
+            margin-top: 215px;
             text-align: center;
             color: #fff;
             text-transform: uppercase;
@@ -57,21 +60,21 @@
         #id-card h1{
             margin-top: 0;
             margin-bottom: 12px;
-            font-size: 18px;
+            font-size: 26px;
         }
         #id-card p{
             margin-top: 0;
             margin-bottom: 0;
-            font-size: 16px;
+            font-size: 22px;
         }
         #id-card #qr{
-            width: 114px;
-            height: 114px;
+            width: 200px;
+            height: 200px;
             background-color: #fff;
             position: absolute;
-            bottom: 8px;
-            right: 8px;
-            padding: 8px;
+            bottom: 16px;
+            right: 16px;
+            padding: 12px;
         }
         @media print {
             .pagebreak { page-break-before: always; } /* page-break-after works, as well */
@@ -79,9 +82,9 @@
     </style>
 </head>
 <body>
-    <div id="id-card" style="background-image: url('/imgs/{{ $pesertum->angkatan }}.png')">
+    <div id="id-card" style="background-image: url('/imgs/{{ $pesertum->angkatan }}.jpg')">
         @if($pesertum->foto)
-            <div id="photo" style="background-image: url('{{ $pesertum->foto->getUrl() }}')">
+            <div id="photo" class="angkatan-{{ $pesertum->angkatan }}" style="background-image: url('{{ $pesertum->foto->getUrl() }}')">
             
             </div>
         @endif
