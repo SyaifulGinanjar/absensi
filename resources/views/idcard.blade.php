@@ -79,7 +79,7 @@
     </style>
 </head>
 <body>
-    <div id="id-card" style="background-image: url('/imgs/{{ $pesertum->angkatan == 1 }}.png')">
+    <div id="id-card" style="background-image: url('/imgs/{{ $pesertum->angkatan }}.png')">
         @if($pesertum->foto)
             <div id="photo" style="background-image: url('{{ $pesertum->foto->getUrl() }}')">
             

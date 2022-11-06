@@ -40,7 +40,13 @@ class HomeController extends Controller
 
     public function bulkPdf(Request $request)
     {
-        $peserta = Pesertum::orderBy('id', 'asc')->paginate(100);
+
+        if(isset($request->angkatan)){
+            $peserta = Pesertum::where('angkatan', $request->angkatan)->orderBy('id', 'asc')->paginate(100);
+        }else{
+            $peserta = Pesertum::orderBy('id', 'asc')->paginate(100);
+        }
+
         $html = '';
         foreach($peserta as $pesertum)
         {
